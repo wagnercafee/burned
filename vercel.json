@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/queimadas/:path*",
+      "destination": "/api/proxy?path=queimadas/:path*"
+    }
+  ]
+}

@@ -68,7 +68,7 @@ const carregarBahiaIBGE = () =>
 /* 
     ------------------------- Focos diario do dia anterior -------------------------
 */
-const BASE_URL_DIARIO = 'http://localhost:3001/queimadas/queimadas/focos/csv/diario/Brasil/';
+const BASE_URL_DIARIO = '/queimadas/queimadas/focos/csv/diario/Brasil/';
 
 const parsearCSV = (texto) => {
     const linhas = texto.trim().split('\n');
@@ -210,7 +210,7 @@ const agendarAtualizacaoDiaria = () => {
 /* 
     ------------------------- Focos Atuais -------------------------
 */
-const BASE_URL_DEZ_MINUTOS = 'http://localhost:3001/queimadas/queimadas/focos/csv/10min/';
+const BASE_URL_DEZ_MINUTOS = '/queimadas/queimadas/focos/csv/10min/';
 
 const gerarSlotsHoje = () => {
     const agora = new Date();
