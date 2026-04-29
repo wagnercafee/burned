@@ -1,0 +1,341 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  font-family: Roboto;
+  background: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.leaflet-control-attribution {
+  margin-bottom: 20px !important;
+  font-size: 1rem;
+  left: 8px;
+}
+
+.leaflet-control-scale {
+  font-size: 1.4rem;
+  left: 8px;
+}
+
+/* ── 
+==================== Header ====================
+── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 0px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.30);
+
+  .icon-fogo {
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .div-header {
+    display: flex;
+  }
+
+}
+
+/* ── Mapa ── */
+#map {
+  height: calc(100vh - 60px);
+  width: 100%;
+}
+
+/* ── 
+==================== Legenda 1 Focos Atuais ====================
+── */
+.legenda-atuais {
+  position: absolute;
+  z-index: 1000;
+  background: #ffffffee;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px 28px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
+
+  top: 86px;
+  right: 16px;
+  width: 700px;
+}
+
+.legenda-title-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#legenda-diaria-title {
+  text-align: left;
+  font-weight: 600;
+  font-size: 3.5rem;
+  color: #1a1a1a;
+}
+
+.legenda-header {
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  font-size: 2.5rem;
+  padding-top: 8px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 4px;
+
+}
+
+.legenda-faixa {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 2.4rem;
+}
+
+.legenda-faixa.futuro {
+  opacity: 0.35;
+  filter: grayscale(80%);
+  pointer-events: none;
+}
+
+.legenda-faixa.atual .legenda-intervalo {
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.legenda-bolinha {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legenda-intervalo {
+  color: #444;
+  font-size: 3rem;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.legenda-agora {
+  color: #991b1b;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.legenda-count {
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: right;
+  margin-left: 80px;
+}
+
+.legenda-count.tem-focos {
+  color: #991b1b;
+  padding: 1px 5px;
+  border-radius: 999px;
+}
+
+.legenda-count.sem-focos {
+  color: #ccc;
+}
+
+
+#legenda-atual-data {
+  font-size: 2.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(105, 105, 105);
+  text-align: center;
+}
+
+.legenda-intervalo-grupo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+/* ── 
+==================== Legenda 2 Diária ====================
+── */
+#legenda-dia-anterior {
+  position: absolute;
+  z-index: 1000;
+  background: #ffffffee;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px 28px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.30);
+
+  bottom: 162px;
+  right: 16px;
+  width: 700px;
+}
+
+#legenda-diaria-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 4px 6px 0px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 4px;
+  font-size: 2.5rem;
+  padding-top: 8px;
+}
+
+.legenda-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 4px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.legenda-row .triangulo {
+  flex-shrink: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 36px solid #9c11b8 !important;
+}
+
+.legenda-row .nome-satelite {
+  flex: 1;
+  color: #555;
+  font-size: 3rem;
+}
+
+.legenda-row .badge-qtd {
+  font-weight: 700;
+  color: #9c11b8;
+  font-size: 3.3rem;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+@keyframes foco-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 18px rgba(220, 38, 38, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+
+.foco-pulse {
+  animation: foco-pulse 2.8s ease-in-out infinite;
+}
+
+/* ── 
+==================== Legenda 3 Persistencia ====================
+── */
+#modal-legenda-intersecao {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px 28px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.30);
+  backdrop-filter: blur(4px);
+  width: 700px;
+}
+
+.legenda-intersecao-titulo {
+  font-size: 3rem;
+  margin-right: 42px;
+  font-weight: 600;
+  color: black;
+}
+
+.legenda-intersecao-row {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 0px 16px;
+  gap: 0px 40px;
+}
+
+/* Linha da equação visual */
+.legenda-eq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Bola pulsante = resultado */
+.eq-pulse {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.eq-pulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.eq-pulse::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid #dc2626;
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 24px rgba(220, 38, 38, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+.legenda-intersecao-desc {
+  text-align: justify;
+  font-size: 1.56rem;
+  margin-left: 4px;
+  color: black;
+}
